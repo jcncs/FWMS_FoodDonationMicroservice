@@ -8,7 +8,7 @@ namespace FoodDonationMicroservice.Repository
 {
     public interface IFoodDonationRepository
     {
-        IEnumerable<FoodDonations> GetDonations();
+        IEnumerable<FoodDonationView> GetDonations();
         FoodDonations GetDonationByID(string donationId);
         void InsertDonation(FoodDonations donation);
         void DeleteDonation(string donationId);

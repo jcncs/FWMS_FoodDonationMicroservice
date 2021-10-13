@@ -26,9 +26,9 @@ namespace FoodDonationMicroservice.Repository
             return _dbContext.FoodDonations.Find(donationId);
         }
 
-        public IEnumerable<FoodDonations> GetDonations()
-        {
-            return _dbContext.FoodDonations.ToList();
+        public IEnumerable<FoodDonationView> GetDonations()
+        {           
+            return _dbContext.FoodDonationViews.ToList();
         }
         public void InsertDonation(FoodDonations donation)
         {

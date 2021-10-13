@@ -23,15 +23,15 @@ namespace FoodDonationMicroservice.Controllers
         }
 
         // GET: api/<FoodDonationController>
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("GetAllDonations")]
+        public IActionResult GetAllDonations()
         {
             var donations = _foodDonationRepository.GetDonations();
             return new OkObjectResult(donations);
         }
 
         // GET api/<FoodDonationController>/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("GetDonationById/{id}", Name = "Get")]
         public IActionResult Get(string id)
         {
             var donation = _foodDonationRepository.GetDonationByID(id);

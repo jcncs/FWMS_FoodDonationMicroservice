@@ -10,7 +10,6 @@ namespace FoodDonationMicroservice.Models
         public string CollectionId { get; set; }
         public string CollectionName { get; set; }
         public string DonationId { get; set; }
-        public string LocationId { get; set; }
 
     }
 }

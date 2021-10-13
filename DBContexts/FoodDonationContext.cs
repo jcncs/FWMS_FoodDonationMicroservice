@@ -15,6 +15,8 @@ namespace FoodDonationMicroservice.DBContexts
         public DbSet<FoodDonations> FoodDonations { get; set; }
         public DbSet<FoodDescription> FoodDescriptions { get; set; }
         public DbSet<FoodEntry> Entries { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<FoodDonationView> FoodDonationViews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
