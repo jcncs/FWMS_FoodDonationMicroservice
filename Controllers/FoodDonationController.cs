@@ -39,14 +39,14 @@ namespace FoodDonationMicroservice.Controllers
         }
 
         // POST api/<FoodDonationController>
-        [HttpPost]
-        public IActionResult Post([FromBody] FoodDonations donation)
+        [HttpPost("AddNewDonation")]
+        public IActionResult AddNewDonation([FromBody] CreateRequest request)
         {
             using (var scope = new TransactionScope())
             {
-                _foodDonationRepository.InsertDonation(donation);
+                var response = _foodDonationRepository.InsertDonation(request);
                 scope.Complete();
-                return CreatedAtAction(nameof(Get), new { DonationId = donation.DonationId }, donation);
+                return new OkResult();
             }
             
         }

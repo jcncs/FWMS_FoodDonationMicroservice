@@ -17,7 +17,7 @@ namespace FoodDonationMicroservice.Models
         public string UpdatedBy { get; set; }
         public string UserId { get; set; }
         public string ReservedBy { get; set; }
-        public DateTime ReservedDate { get; set; }
+        public DateTime? ReservedDate { get; set; }
         public string CollectionId { get; set; }
         public string FoodEntryId { get; set; }
         public string LocationId { get; set; }

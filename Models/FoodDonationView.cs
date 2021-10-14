@@ -19,7 +19,7 @@ namespace FoodDonationMicroservice.Models
         public DateTime ExpiryDate { get; set; }
         public string LocationName { get; set; }
         public string ReservedBy { get; set; }
-        public DateTime ReservedDate { get; set; }
+        public DateTime? ReservedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CollectionId { get; set; }
