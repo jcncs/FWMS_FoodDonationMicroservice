@@ -22,7 +22,7 @@ namespace FoodDonationMicroservice.Controllers
             _foodDonationRepository = foodDonationRepository;
         }
 
-        // GET: api/<FoodDonationController>
+        // GET: api/FoodDonation/GetAllDonations
         [HttpGet("GetAllDonations")]
         public IActionResult GetAllDonations()
         {
@@ -30,7 +30,25 @@ namespace FoodDonationMicroservice.Controllers
             return new OkObjectResult(donations);
         }
 
-        // GET api/<FoodDonationController>/5
+        // GET: api/FoodDonation/GetTodayAllDonations
+        [HttpGet("GetTodayAllDonations")]
+        public IActionResult GetTodayAllDonations()
+        {
+            // Donations that are created today, regardless of expiry date or reservations
+            var donations = _foodDonationRepository.GetTodayAllDonations();
+            return new OkObjectResult(donations);
+        }
+
+        // GET: api/FoodDonation/GetAvailableDonations
+        [HttpGet("GetAvailableDonations")]
+        public IActionResult GetAvailableDonations()
+        {
+            // Available refers to food that are not yet expired and not reserved yet
+            var donations = _foodDonationRepository.GetAvailableDonations();
+            return new OkObjectResult(donations);
+        }
+
+        // GET api/FoodDonation/4DCBC8B5F47D
         [HttpGet("GetDonationById/{id}", Name = "Get")]
         public IActionResult Get(string id)
         {
@@ -38,7 +56,7 @@ namespace FoodDonationMicroservice.Controllers
             return new OkObjectResult(donation);
         }
 
-        // POST api/<FoodDonationController>
+        // POST api/FoodDonation/AddNewDonation
         [HttpPost("AddNewDonation")]
         public IActionResult AddNewDonation([FromBody] CreateRequest request)
         {
@@ -51,15 +69,15 @@ namespace FoodDonationMicroservice.Controllers
             
         }
 
-        // PUT api/<FoodDonationController>/5
-        [HttpPut("{id}")]
-        public IActionResult Put([FromBody] FoodDonations donation)
+        // PUT api/FoodDonation/ModifyDonation
+        [HttpPut("ModifyDonation")]
+        public IActionResult Put([FromBody] UpdateRequest request)
         {
-            if (donation != null)
+            if (request != null)
             {
                 using (var scope = new TransactionScope())
                 {
-                    _foodDonationRepository.UpdateDonation(donation);
+                    var response = _foodDonationRepository.UpdateDonation(request);
                     scope.Complete();
                     return new OkResult();
                 }
@@ -67,11 +85,11 @@ namespace FoodDonationMicroservice.Controllers
             return new NoContentResult();
         }
 
-        // DELETE api/<FoodDonationController>/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        // DELETE api/FoodDonation/DeleteDonation
+        [HttpDelete("DeleteDonation")]
+        public IActionResult Delete(DeleteRequest request)
         {
-            _foodDonationRepository.DeleteDonation(id);
+            var response = _foodDonationRepository.DeleteDonation(request);
             return new OkResult();
         }
     }

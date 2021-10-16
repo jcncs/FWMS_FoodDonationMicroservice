@@ -9,10 +9,12 @@ namespace FoodDonationMicroservice.Repository
     public interface IFoodDonationRepository
     {
         IEnumerable<FoodDonationView> GetDonations();
+        IEnumerable<FoodDonationView> GetTodayAllDonations();
+        IEnumerable<FoodDonationView> GetAvailableDonations();
         FoodDonationView GetDonationByID(string donationId);
         string InsertDonation(CreateRequest request);
-        void DeleteDonation(string donationId);
-        void UpdateDonation(FoodDonations donation);
+        string DeleteDonation(DeleteRequest request);
+        string UpdateDonation(UpdateRequest request);
         void Save();
     }
 }
